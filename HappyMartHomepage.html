@@ -4,18 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="HappyMartDesktop.css">
-    <link rel="stylesheet" media="screen and (max width: 500px;)" href="HappyMartMobile.css">
     <title>Homepage</title>
 </head>
 <body>
     <header>
-        <img class = "logo" src="happymartlogo.png">
-        <input class = "search-bar" type="text" placeholder="Search for products">
-        <button class="login-btn"></button>
-        <button class="cart-btn"></button>
+        <a href="HappyMartHomepage.html">
+            <img class = "logo" src="happymartlogo.png">
+        </a>
+        <div class = "search-bar">
+            <input type="text" placeholder="Search for products">
+        </div>
+        <div class="header-btn-group">
+            <button class="header-btn"></button>
+            <button class="header-btn"></button>
+        </div>
     </header>
-    <div class = "banner">
-        
-    </div>
+
+    <section class = "slider-container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img id = "banner-1" src="grocerysitebanner-1.jpg" alt="promotional banner">
+                <img id = "banner-2" src="grocerysitebanner-2.jpg" alt="promotional banner">
+                <img id = "banner-1" src="grocerysitebanner-1.jpg" alt="promotional banner">
+            </div>
+            <div class="slider-nav">
+                <a href="#banner-1"></a>
+                <a href="#banner-2"></a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
+
+<script>
+ const slider = document.querySelector('.slider');
+  const slides = slider.querySelectorAll('img');
+  let currentIndex = 0;
+
+  setInterval(() => {
+    currentIndex++;
+  
+  if (currentIndex >= slides.length) {
+    currentIndex = 1; 
+    slider.scrollTo({ left: slides[currentIndex].offsetLeft, behavior: 'auto' }); // jump instantly
+  }
+
+  const scrollAmount = slides[currentIndex].offsetLeft;
+  slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  }, 4000);
+</script>
