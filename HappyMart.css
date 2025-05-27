@@ -33,7 +33,14 @@ header {
 }
 
 input {
-    border-style: none;
+    width: 48rem;
+    border: none;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input:focus {
+    outline: none;
+    border: none;
 }
 
 input::placeholder {
@@ -91,10 +98,7 @@ input::placeholder {
 .slider-nav {
     background-color: grey;
     opacity: 50%;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.6rem 1rem 0.6rem 1rem;
     border-radius: 1.2rem;
     display: flex;
     column-gap: 1rem;
@@ -117,4 +121,131 @@ input::placeholder {
 
 .slider-nav a:hover {
     opacity: 1;
+}
+
+.categories {
+    position: relative;
+    height: 17rem;
+    background-color: white;
+    margin: 2rem 7.5rem 2rem 7.5rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.categories > h2 {
+    padding-top: 1rem;
+    font-size: 25pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #FF7600;
+}
+
+.cat-buttons {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    column-gap: 1rem;
+    
+}
+
+.cat-buttons button {
+    position: relative;
+    box-shadow: 2px 2px 4px 0px #C4C4C4;
+    background: white;
+    border: 0.2rem solid white;
+    border-radius: 1rem;
+    width: 8rem;
+    height: 10rem;
+}
+
+.cat-buttons button > h3 {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13pt;
+    color: #545454;
+}
+
+.cat-buttons button > img {
+    height: 4rem;
+    margin-bottom: 0.7rem;
+}
+
+.cat-buttons button:hover {
+    border-color: #ff9133;
+    background-color:#ff913333;
+    transition: all 0.2s;
+}
+
+.product-section {
+    margin: 3rem 7.5rem 2rem 7.5rem;
+}
+
+.section-title {
+    background-color: white;
+    color: #FF7600;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14pt;
+    border-radius: 2rem;
+    text-align: center;
+    padding: 0.05rem;
+}
+
+.product-cards {
+    margin-top: 2rem;
+    display: flex;
+    column-gap: 2rem;
+}
+
+.product-card {
+    position: relative;
+    background-color: white;
+    width: 12rem;
+    border-radius: 1rem;
+    height: 23rem;
+}
+
+.product-image {
+    margin-top: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10rem;
+    border-radius: 1rem;
+    border: solid #FF7600;
+}
+
+.product-name {
+    padding: 11rem 1.5rem 0rem 1.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14pt;
+}
+
+.price {
+    margin-left: 1.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: oblique;
+    font-size: 17pt;
+    color: #FF7600;
+}
+
+.cart-btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    height: 2.4rem;
+    width: 10.5rem;
+    border-radius: 0.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11pt;
+}
+
+.cart-btn:hover {
+    cursor: pointer;
+    background-color: #FF7600;
+    border: solid #FF7600;
 }

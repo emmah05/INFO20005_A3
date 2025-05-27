@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="HappyMartDesktop.css">
+    <link rel="stylesheet" href="HappyMart.css">
     <title>Homepage</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
 
     <section class = "slider-container">
         <div class="slider-wrapper">
-            <div class="slider">
+            <div class= "slider">
                 <img id = "banner-1" src="grocerysitebanner-1.jpg" alt="promotional banner">
                 <img id = "banner-2" src="grocerysitebanner-2.jpg" alt="promotional banner">
                 <img id = "banner-1" src="grocerysitebanner-1.jpg" alt="promotional banner">
@@ -33,10 +33,88 @@
             </div>
         </div>
     </section>
+    <section class = "categories">
+        <h2>Categories</h2>
+        <div class = "cat-buttons">
+            <button id = "veges">
+                <img src="vegeicon.png" alt="veges">
+                <h3>Veges</h3>
+            </button>
+            <button id = "seafood">
+                <img src="seafoodicon.png" alt="seafood">
+                <h3>Seafood</h3>
+            </button>
+            <button id = "pantry">
+                <img src="cannedfoodicon.png" alt="pantry">
+                <h3>Pantry</h3>
+            </button>
+            <button id = "drinks">
+                <img src="drinksicon.png" alt="drinks">
+                <h3>Drinks</h3>
+            </button>
+            <button id = "veges">
+                <img src="vegeicon.png" alt="veges">
+                <h3>Veges</h3>
+            </button>
+            <button id = "seafood">
+                <img src="seafoodicon.png" alt="seafood">
+                <h3>Seafood</h3>
+            </button>
+            <button id = "pantry">
+                <img src="cannedfoodicon.png" alt="pantry">
+                <h3>Pantry</h3>
+            </button>
+            <button id = "drinks">
+                <img src="drinksicon.png" alt="drinks">
+                <h3>Drinks</h3>
+            </button>
+        </div>
+    </section>
+    <div class = "product-section">
+        <div class = "section-title">
+            <h1>SALE</h1>
+        </div>
+        <div class= "product-cards">
+            <div class = "product-card">
+                <img class = "product-image" src="ramenphoto.png" alt="ramen photo">
+                <h3 class = "product-name">Samyang Ramen 5p</h3>
+                <h2 class = "price">$7.99</h2>
+                <button class = "cart-btn">Add to Cart</button>
+            </div>
+            <div class = "product-card">
+                <img class = "product-image" src="kimchi.png" alt="kimchi photo">
+                <h3 class = "product-name">Samyang Ramen 5p</h3>
+                <h2 class = "price">$7.99</h2>
+                <button class = "cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class = "product-section">
+        <div class = "section-title">
+            <h1>Bestsellers</h1>
+        </div>
+        <div class= "product-cards">
+            <div class = "product-card">
+                <img class = "product-image" src="ramenphoto.png" alt="ramen photo">
+                <h3 class = "product-name">Samyang Ramen 5p</h3>
+                <h2 class = "price">$7.99</h2>
+                <button class = "cart-btn">Add to Cart</button>
+            </div>
+            <div class = "product-card">
+                <img class = "product-image" src="kimchi.png" alt="kimchi photo">
+                <h3 class = "product-name">Samyang Ramen 5p</h3>
+                <h2 class = "price">$7.99</h2>
+                <button class = "cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 
 <script>
+
+//make images slide automatically every 4s
  const slider = document.querySelector('.slider');
   const slides = slider.querySelectorAll('img');
   let currentIndex = 0;
@@ -46,7 +124,7 @@
   
   if (currentIndex >= slides.length) {
     currentIndex = 1; 
-    slider.scrollTo({ left: slides[currentIndex].offsetLeft, behavior: 'auto' }); // jump instantly
+    slider.scrollTo({ left: slides[currentIndex].offsetLeft, behavior: 'auto' });
   }
 
   const scrollAmount = slides[currentIndex].offsetLeft;
