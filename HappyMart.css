@@ -60,6 +60,7 @@ input::placeholder {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
     background-color: white; 
+    cursor: pointer;
   }
   
   .header-btn-group {
@@ -84,8 +85,6 @@ input::placeholder {
     background-color: #FF7600;
   }
   
-  
-
 
 .slider-container {
     padding: 3rem;
@@ -198,6 +197,8 @@ input::placeholder {
 
 .product-section {
     margin: 3rem 7.5rem 2rem 7.5rem;
+    width: 100%;
+    max-width: none;
 }
 
 .section-title {
@@ -211,8 +212,21 @@ input::placeholder {
     min-width: 55rem;
 }
 
+.filter-btn {
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15pt;
+    font-weight: 500;
+    background-color: #FF7600;
+    border-style: none;
+    border-radius: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+}
+
 .product-cards {
-    margin-top: 2rem;
+    width: 100%;
+    margin-top: 1.5rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(13rem, 13rem));
     gap: 2rem;
@@ -257,7 +271,6 @@ input::placeholder {
 .price {
     margin-bottom: 0.8rem;
     margin-left: 0.5rem;
-    margin-right: 0.5rem;
     font-family: 'REM', sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;  /* bold */
@@ -271,6 +284,8 @@ input::placeholder {
     text-decoration: none;   /* no underline */
     cursor: pointer;         /* pointer on whole card */
   }
+
+/*Add to Cart button and quantity selector styling for product cards*/
 
 .addtocart-btn {
     margin-left: 0.5rem;
@@ -301,9 +316,9 @@ input::placeholder {
     overflow: hidden;
     width: 10rem;
     height: 2.7rem;
-  }
+}
   
-  .qty-btn {
+.qty-btn {
     background-color: #FF7600;
     color: white;
     border: none;
@@ -311,22 +326,22 @@ input::placeholder {
     height: 2.7rem;
     cursor: pointer;
     user-select: none;
-  }
+}
 
-  .qty-btn.plus {
+.qty-btn.plus {
     font-family: 'Ubuntu', sans-serif;
     font-size: 2rem;
     margin: auto;
     padding-right: 0.5rem;
-  }
+}
 
-  .qty-btn.minus {
+.qty-btn.minus {
     font-family: 'Ubuntu', sans-serif;
     font-size: 2rem;
     padding-left: 0.5rem;
-  }
+}
   
-  .qty-number {
+.qty-number {
     padding-top: 0.5rem;
     width: 3.4rem;
     height: 1.7rem;
@@ -337,3 +352,233 @@ input::placeholder {
     border-width: 0.25rem;
     border-style: solid;
   }
+
+/*product page styling*/
+
+.product {
+    display: flex;
+    margin: 5rem;
+    margin-top: 4rem;
+    gap: 2rem;
+}
+
+.product-img-with-arrows {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.arrow {
+    width: 4vw;
+    min-width: 3rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.enlarged-product-img {
+    min-width: 20rem;
+    width: 30vw;
+    background-color: white;
+    border: solid #FF7600 0.4vw;
+    border-radius: 1.5rem;
+    height: auto;
+}
+
+.product-info {
+    margin-left: 2rem;
+    flex: 1;
+    min-width: 20rem;
+    width: 40vw;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    background-color: white;
+    border-style: none;
+    border-radius: 1.5rem;
+    box-shadow: 0.2rem 0.3rem 0.2rem rgba(0, 0, 0, 0.3);
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.product-info > h1 {
+    color: #545454;
+    font-size: 28pt;
+    margin-top: 8vh;
+}
+
+.product-info > h3 {
+    color: #6b6b6b;
+    font-size: 18pt;
+    margin-top: 2vh;
+}
+
+.product-info > h4 {
+    color: #6b6b6b;
+    font-size: 14pt;
+    margin-top: 2vh;
+}
+
+.product-pg-price {
+    margin-top: 3vh;
+    text-align: right;
+    font-family: 'REM', sans-serif;
+    color: #FF7600;
+    font-optical-sizing: auto;
+    font-weight: 700; 
+    font-size: 30pt;
+}
+
+/*Add to cart button and quantity selector appearance for product page*/
+
+.enlarged-addtocart-btn {
+    display: block;
+    margin-bottom: 2rem;
+    background-color: black;
+    color: white;
+    height: 5rem;
+    width: 100%;
+    border-style: none;
+    border-radius: 1rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 22pt;
+}
+
+.enlarged-addtocart-btn:hover {
+    cursor: pointer;
+    background-color: #FF7600;
+    border: solid #FF7600;
+}
+
+.enlarged-quantity-selector {
+    margin-bottom: 2rem;
+    display: flex;
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 90%;
+    height: 5rem;
+}
+
+.enlarged-qty-btn {
+    background-color: #FF7600;
+    color: white;
+    border: none;
+    width: 32%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.enlarged-qty-btn.plus {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 38pt;
+    padding-right: 0.5rem;
+}
+
+.enlarged-qty-btn.minus {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 38pt;
+    padding-left: 0.5rem;
+}
+  
+.enlarged-qty-number {
+    padding-top: 0.8rem;
+    width: 36%;
+    font-family: 'REM', sans-serif;
+    font-size: 28pt;
+    text-align: center;
+    border-color: #FF7600;
+    border-width: 0.25rem;
+    border-style: solid;
+}
+
+
+
+.related-products {
+    margin-left: 12vw;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 20pt;
+    color: #6b6b6b;
+}
+
+.productpg-product-cards {
+    width: 100%;
+    margin-left: 12vw;
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 13rem));
+    gap: 2rem;
+    justify-content: start;
+}
+
+
+@media (max-width: 430px) {
+    
+    .product {
+      flex-direction: column;      /* Stack items vertically */
+      gap: 2rem;
+      margin: 0.2rem;   
+      margin-top: 1rem;              /* Adjust spacing between items */
+    }
+
+    .product-img-with-arrows {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .enlarged-product-img {
+        width: 80%;                 
+    }
+
+    .arrow {
+        width: 4vw;
+    }
+
+    .product-info {
+        width: 80vw;
+        min-width: unset;
+        margin-right: 2rem;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+
+    .product-info > h1 {
+        font-size: 25pt;
+    }
+    
+    .product-card {
+        padding: 0.5rem;
+        width: 9.5rem;
+    }
+    
+    .product-image {
+        width: 8.5rem;
+        margin-top: 0.2rem;
+    }
+
+    .product-name {
+        padding-left: 0.1rem;
+    }
+
+    .addtocart-btn {
+        margin: 0 auto;
+        width: 8.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-section {
+        margin: 2rem;
+    }
+
+    .productpg-product-cards, .product-cards {
+        grid-template-columns: repeat(auto-fit, 10rem); /* allow more columns */
+        gap: 2rem; 
+        margin-bottom: 5rem;
+    }
+
+
+    
+}  

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HappyMart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=REM:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <div id="header-container"></div>
+
+    
+
+</body>
+
+<!--Load header.html and swap button icons upon hover-->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+    fetch('header.html')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load header: ' + response.status);
+        }
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('header-container').innerHTML = html;
+        
+        // Now the header is in DOM, initialize button hover swapping here:
+        initHeaderButtonHover();
+      })
+      .catch(error => {
+        console.error('Error loading header:', error);
+      });
+  });
+  
+  // Hover swap logic put inside a function:
+  function initHeaderButtonHover() {
+    const buttons = document.querySelectorAll('.header-btn');
+  
+    buttons.forEach(btn => {
+      const img = btn.querySelector('img');
+      const defaultSrc = img.getAttribute('src');
+      let hoverSrc = defaultSrc;
+  
+      if (defaultSrc.includes('loginicon.png')) {
+        hoverSrc = defaultSrc.replace('loginicon.png', 'whiteloginicon.png');
+      } else if (defaultSrc.includes('homeicon.png')) {
+        hoverSrc = defaultSrc.replace('carticon.png', 'whitecarticon.png');
+      }
+  
+      btn.addEventListener('mouseenter', () => {
+        img.setAttribute('src', hoverSrc);
+      });
+  
+      btn.addEventListener('mouseleave', () => {
+        img.setAttribute('src', defaultSrc);
+      });
+    });
+  }    
+</script>
