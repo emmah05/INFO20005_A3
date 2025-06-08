@@ -4,21 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="HappyMart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=REM:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
     <title>Homepage</title>
 </head>
 <body>
-    <header>
-        <a href="HappyMartHomepage.html">
-            <img class = "logo" src="happymartlogo.png">
-        </a>
-        <div class = "search-bar">
-            <input type="text" placeholder="Search for products">
-        </div>
-        <div class="header-btn-group">
-            <button class="header-btn"></button>
-            <button class="header-btn"></button>
-        </div>
-    </header>
+
+    <div id="header-container"></div>
 
     <section class = "slider-container">
         <div class="slider-wrapper">
@@ -44,7 +38,7 @@
                 <img src="seafoodicon.png" alt="seafood">
                 <h3>Seafood</h3>
             </button>
-            <button id = "pantry">
+            <button onclick="window.location.href='Pantrypage.html';" id = "pantry">
                 <img src="cannedfoodicon.png" alt="pantry">
                 <h3>Pantry</h3>
             </button>
@@ -60,7 +54,7 @@
                 <img src="seafoodicon.png" alt="seafood">
                 <h3>Seafood</h3>
             </button>
-            <button id = "pantry">
+            <button onclick="window.location.href='Pantrypage.html';" id = "pantry">
                 <img src="cannedfoodicon.png" alt="pantry">
                 <h3>Pantry</h3>
             </button>
@@ -76,16 +70,56 @@
         </div>
         <div class= "product-cards">
             <div class = "product-card">
-                <img class = "product-image" src="ramenphoto.png" alt="ramen photo">
-                <h3 class = "product-name">Samyang Ramen 5p</h3>
+                <a href="ramenproductpage.html">
+                    <img class = "product-image" src="ramenphoto.png" alt="ramen photo">
+                    <h3 class = "product-name">Samyang Ramen 5p</h3>
+                </a>
                 <h2 class = "price">$7.99</h2>
-                <button class = "cart-btn">Add to Cart</button>
+                <div class="product-actions">
+                    <button class="addtocart-btn">Add to Cart</button>
+                
+                    <!-- Quantity selector (hidden by default) -->
+                    <div class="quantity-selector" style="display: none;">
+                      <button class="qty-btn minus">-</button>
+                      <span class="qty-number">1</span>
+                      <button class="qty-btn plus">+</button>
+                    </div>
+                  </div>
             </div>
             <div class = "product-card">
-                <img class = "product-image" src="kimchi.png" alt="kimchi photo">
-                <h3 class = "product-name">Samyang Ramen 5p</h3>
-                <h2 class = "price">$7.99</h2>
-                <button class = "cart-btn">Add to Cart</button>
+                <a href="kimchiproductpage.html">
+                    <img class = "product-image" src="kimchi.png" alt="kimchi photo">
+                    <h3 class = "product-name">CJ Bibigo Kimchi 1KG</h3>
+                </a>
+                <h2 class = "price">$11.99</h2>
+                
+                <div class="product-actions">
+                    <button class="addtocart-btn">Add to Cart</button>
+                
+                    <!-- Quantity selector (hidden by default) -->
+                    <div class="quantity-selector" style="display: none;">
+                      <button class="qty-btn minus">-</button>
+                      <span class="qty-number">1</span>
+                      <button class="qty-btn plus">+</button>
+                    </div>
+                  </div>
+                
+            </div>
+            <div class = "product-card">
+                <img class = "product-image" src="sesame.png" alt="sesame dressing photo">
+                <h3 class = "product-name">Ottogi Sesame Dressing</h3>
+                
+                <h2 class = "price">$13.99</h2>
+                <div class="product-actions">
+                    <button class="addtocart-btn">Add to Cart</button>
+                
+                    <!-- Quantity selector (hidden by default) -->
+                    <div class="quantity-selector" style="display: none;">
+                      <button class="qty-btn minus">-</button>
+                      <span class="qty-number">1</span>
+                      <button class="qty-btn plus">+</button>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -98,20 +132,112 @@
                 <img class = "product-image" src="ramenphoto.png" alt="ramen photo">
                 <h3 class = "product-name">Samyang Ramen 5p</h3>
                 <h2 class = "price">$7.99</h2>
-                <button class = "cart-btn">Add to Cart</button>
+                <button class = "addtocart-btn">Add to Cart</button>
             </div>
             <div class = "product-card">
                 <img class = "product-image" src="kimchi.png" alt="kimchi photo">
-                <h3 class = "product-name">Samyang Ramen 5p</h3>
-                <h2 class = "price">$7.99</h2>
-                <button class = "cart-btn">Add to Cart</button>
+                <h3 class = "product-name">CJ Bibigo Kimchi 1KG</h3>
+                <h2 class = "price">$11.99</h2>
+                <button class = "addtocart-btn">Add to Cart</button>
             </div>
         </div>
     </div>
 
+    <!--Load header.html and swap button icons upon hover-->
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', () => {
+        fetch('header.html')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to load header: ' + response.status);
+            }
+            return response.text();
+          })
+          .then(html => {
+            document.getElementById('header-container').innerHTML = html;
+            
+            // Now the header is in DOM, initialize button hover swapping here:
+            initHeaderButtonHover();
+          })
+          .catch(error => {
+            console.error('Error loading header:', error);
+          });
+      });
+      
+      // Hover swap logic put inside a function:
+      function initHeaderButtonHover() {
+        const buttons = document.querySelectorAll('.header-btn');
+      
+        buttons.forEach(btn => {
+          const img = btn.querySelector('img');
+          const defaultSrc = img.getAttribute('src');
+          let hoverSrc = defaultSrc;
+      
+          if (defaultSrc.includes('loginicon.png')) {
+            hoverSrc = defaultSrc.replace('loginicon.png', 'whiteloginicon.png');
+          } else if (defaultSrc.includes('homeicon.png')) {
+            hoverSrc = defaultSrc.replace('carticon.png', 'whitecarticon.png');
+          }
+      
+          btn.addEventListener('mouseenter', () => {
+            img.setAttribute('src', hoverSrc);
+          });
+      
+          btn.addEventListener('mouseleave', () => {
+            img.setAttribute('src', defaultSrc);
+          });
+        });
+      }    
+    </script>
+
+    <!--Swap Add to Cart button with quantity selector when clicked-->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const productCards = document.querySelectorAll('.product-card');
+      
+          productCards.forEach(card => {
+            const addToCartBtn = card.querySelector('.addtocart-btn');
+            const qtySelector = card.querySelector('.quantity-selector');
+            const minusBtn = card.querySelector('.qty-btn.minus');
+            const plusBtn = card.querySelector('.qty-btn.plus');
+            const qtyDisplay = card.querySelector('.qty-number');
+      
+            let quantity = 1;
+      
+            addToCartBtn.addEventListener('click', (e) => {
+              e.preventDefault(); // prevent link from triggering
+              addToCartBtn.style.display = 'none';
+              qtySelector.style.display = 'flex';
+              quantity = 1;
+              qtyDisplay.textContent = quantity;
+            });
+      
+            minusBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              if (quantity > 1) {
+                quantity--;
+                qtyDisplay.textContent = quantity;
+              } else {
+                // If reaching 0, switch back to "Add to Cart" button
+                qtySelector.style.display = 'none';
+                addToCartBtn.style.display = 'inline-block';
+              }
+            });
+      
+            plusBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              quantity++;
+              qtyDisplay.textContent = quantity;
+            });
+          });
+        });
+      </script>      
+
+      
 </body>
 </html>
-
+  
 <script>
 
 //make images slide automatically every 4s
