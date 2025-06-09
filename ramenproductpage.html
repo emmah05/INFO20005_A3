@@ -31,7 +31,7 @@
                 <button class="enlarged-addtocart-btn">Add to Cart</button>
             
                 <!-- Quantity selector (hidden by default) -->
-                <div class="enlarged-quantity-selector" style="display: none;">
+                <div class="enlarged-qty-selector" style="display: none;">
                   <button class="enlarged-qty-btn minus">-</button>
                   <span class="enlarged-qty-number">1</span>
                   <button class="enlarged-qty-btn plus">+</button>
@@ -172,38 +172,55 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const productSection = document.querySelector('.product');
-      const addToCartBtn = productSection.querySelector('.enlarged-addtocart-btn');
-      const qtySelector = productSection.querySelector('.enlarged-quantity-selector');
-      const minusBtn = qtySelector.querySelector('.qty-btn.minus');
-      const plusBtn = qtySelector.querySelector('.qty-btn.plus');
-      const qtyDisplay = qtySelector.querySelector('.qty-number');
+      const products = document.querySelectorAll('.product');
   
-      let quantity = 1;
+      products.forEach(product => {
+        const productInfo = product.querySelector('.product-info');
+        const addToCartBtn = productInfo.querySelector('.enlarged-addtocart-btn');
+        const qtySelector = productInfo.querySelector('.enlarged-qty-selector');
+        const minusBtn = qtySelector.querySelector('.enlarged-qty-btn.minus');
+        const plusBtn = qtySelector.querySelector('.enlarged-qty-btn.plus');
+        const qtyDisplay = qtySelector.querySelector('.enlarged-qty-number');
+        console.log('AddToCartBtn:', addToCartBtn);
+        console.log('QtySelector:', qtySelector);
+        console.log('MinusBtn:', minusBtn);
+        console.log('PlusBtn:', plusBtn);
+        console.log('QtyDisplay:', qtyDisplay);
+
+        let quantity = 1;
   
-      addToCartBtn.addEventListener('click', () => {
-        addToCartBtn.style.display = 'none';
-        qtySelector.style.display = 'flex';
-        qtyDisplay.textContent = quantity;
-      });
-  
-      minusBtn.addEventListener('click', () => {
-        quantity--;
-        if (quantity <= 0) {
-          qtySelector.style.display = 'none';
-          addToCartBtn.style.display = 'block';
-          quantity = 1; // reset for next time
-        } else {
+        addToCartBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          quantity = 1;
           qtyDisplay.textContent = quantity;
-        }
-      });
+          addToCartBtn.style.display = 'none';
+          qtySelector.style.display = 'flex';
+        });
   
-      plusBtn.addEventListener('click', () => {
-        quantity++;
-        qtyDisplay.textContent = quantity;
+        minusBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (quantity > 1) {
+            quantity--;
+            qtyDisplay.textContent = quantity;
+          } else {
+            qtySelector.style.display = 'none';
+            addToCartBtn.style.display = 'inline-block';
+            quantity = 1;
+          }
+        });
+  
+        plusBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          quantity++;
+          qtyDisplay.textContent = quantity;
+        });
       });
     });
   </script>
+  
+  
+  
+  
 
 </body>
 </html>

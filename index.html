@@ -19,7 +19,6 @@
             <div class= "slider">
                 <img id = "banner-1" src="grocerysitebanner-1.jpg" alt="promotional banner">
                 <img id = "banner-2" src="grocerysitebanner-2.jpg" alt="promotional banner">
-                <img id = "banner-1" src="grocerysitebanner-1.jpg" alt="promotional banner">
             </div>
             <div class="slider-nav">
                 <a href="#banner-1"></a>
@@ -221,7 +220,7 @@
               } else {
                 // If reaching 0, switch back to "Add to Cart" button
                 qtySelector.style.display = 'none';
-                addToCartBtn.style.display = 'inline-block';
+                addToCartBtn.style.display = 'block';
               }
             });
       
@@ -237,23 +236,24 @@
       
 </body>
 </html>
-  
-<script>
 
-//make images slide automatically every 4s
- const slider = document.querySelector('.slider');
+
+<script>
+  const slider = document.querySelector('.slider');
   const slides = slider.querySelectorAll('img');
   let currentIndex = 0;
+
+  //make images slide automatically every 4s
 
   setInterval(() => {
     currentIndex++;
   
-  if (currentIndex >= slides.length) {
-    currentIndex = 1; 
-    slider.scrollTo({ left: slides[currentIndex].offsetLeft, behavior: 'auto' });
-  }
+    if (currentIndex >= slides.length) {
+      currentIndex = 0;  // loop back to first image
+    }
 
-  const scrollAmount = slides[currentIndex].offsetLeft;
-  slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    const scrollAmount = slides[currentIndex].offsetLeft;
+    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
   }, 4000);
+
 </script>
