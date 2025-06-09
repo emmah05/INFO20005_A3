@@ -14,54 +14,119 @@
 <body>
     <div id="header-container"></div>
 
-    
+    <h1 class = "cart-title">Your Cart</h1>
 
-</body>
+    <section class = "cart">
+        <div class = "cart-products">
 
-<!--Load header.html and swap button icons upon hover-->
-<script>
+        </div>
+        <div class = "checkout-info">
+            <h4>Total</h4>
+            <h2 class = "total-price"></h2>
+            <button class= "checkout-btn">Go to Checkout</button>
+        </div>
+
+    </section> <!--Load header.html and swap button icons upon hover-->
     
-    document.addEventListener('DOMContentLoaded', () => {
-    fetch('header.html')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to load header: ' + response.status);
-        }
-        return response.text();
-      })
-      .then(html => {
-        document.getElementById('header-container').innerHTML = html;
+    <script>
         
-        // Now the header is in DOM, initialize button hover swapping here:
-        initHeaderButtonHover();
-      })
-      .catch(error => {
-        console.error('Error loading header:', error);
+        document.addEventListener('DOMContentLoaded', () => {
+        fetch('header.html')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to load header: ' + response.status);
+            }
+            return response.text();
+          })
+          .then(html => {
+            document.getElementById('header-container').innerHTML = html;
+            
+            // Now the header is in DOM, initialize button hover swapping here:
+            initHeaderButtonHover();
+          })
+          .catch(error => {
+            console.error('Error loading header:', error);
+          });
       });
-  });
-  
-  // Hover swap logic put inside a function:
-  function initHeaderButtonHover() {
-    const buttons = document.querySelectorAll('.header-btn');
-  
-    buttons.forEach(btn => {
-      const img = btn.querySelector('img');
-      const defaultSrc = img.getAttribute('src');
-      let hoverSrc = defaultSrc;
-  
-      if (defaultSrc.includes('loginicon.png')) {
-        hoverSrc = defaultSrc.replace('loginicon.png', 'whiteloginicon.png');
-      } else if (defaultSrc.includes('homeicon.png')) {
-        hoverSrc = defaultSrc.replace('carticon.png', 'whitecarticon.png');
-      }
-  
-      btn.addEventListener('mouseenter', () => {
-        img.setAttribute('src', hoverSrc);
+      
+      // Hover swap logic put inside a function:
+      function initHeaderButtonHover() {
+        const buttons = document.querySelectorAll('.header-btn');
+      
+        buttons.forEach(btn => {
+          const img = btn.querySelector('img');
+          const defaultSrc = img.getAttribute('src');
+          let hoverSrc = defaultSrc;
+      
+          if (defaultSrc.includes('loginicon.png')) {
+            hoverSrc = defaultSrc.replace('loginicon.png', 'whiteloginicon.png');
+          } else if (defaultSrc.includes('homeicon.png')) {
+            hoverSrc = defaultSrc.replace('carticon.png', 'whitecarticon.png');
+          }
+      
+          btn.addEventListener('mouseenter', () => {
+            img.setAttribute('src', hoverSrc);
+          });
+      
+          btn.addEventListener('mouseleave', () => {
+            img.setAttribute('src', defaultSrc);
+          });
+        });
+      }    
+    </script>
+    
+    <script>
+        //Load cart data
+        
+        document.addEventListener('DOMContentLoaded', () => {
+        const cartContainer = document.querySelector('.cart-products');
+        const totalPriceElem = document.querySelector('.total-price');
+        const checkoutBtn = document.querySelector('.checkout-btn');
+        
+        function renderCart() {
+          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+          cartContainer.innerHTML = '';
+          let total = 0;
+      
+          if(cart.length === 0) {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+            totalPriceElem.textContent = '$0.00';
+            checkoutBtn.disabled = true;
+            return;
+          }
+      
+          checkoutBtn.disabled = false;
+      
+          cart.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'cart-item';
+            card.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-details">
+                 <p>${item.name}</p>
+                 <p>Quantity: ${item.qty}</p>
+                  <p>Price: $${(item.price * item.qty).toFixed(2)}</p>
+                </div>
+                `;
+
+            cartContainer.appendChild(card);
+            total += item.price * item.qty;
+          });
+      
+          totalPriceElem.textContent = `$${total.toFixed(2)}`;
+        }
+      
+        renderCart();
+      
+        // Optional: Add click listener for checkoutBtn
+        checkoutBtn.addEventListener('click', () => {
+          alert('Proceeding to checkout...');
+          // You can add checkout logic here
+        });
       });
-  
-      btn.addEventListener('mouseleave', () => {
-        img.setAttribute('src', defaultSrc);
-      });
-    });
-  }    
-</script>
+      
+    
+    </script>
+    
+    
+</body>

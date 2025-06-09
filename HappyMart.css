@@ -10,13 +10,19 @@ header {
     height: 5rem;
     display: flex;
     padding-top: 1.5rem;
+    justify-content: space-between; /* push logo left, buttons right */
+    align-items: center;
+    padding: 0 1rem; /* optional side padding */
+    width: 100%;
+    box-sizing: border-box;
+    
 }
 
 .logo {
     height: 3.5rem;
     width: 6rem;
-    margin-left: 2rem;
     margin-top: -0.5rem;
+    padding-right: 1rem;
 }
 
 .search-bar {
@@ -25,7 +31,7 @@ header {
     height: 3rem;
     display: flex;
     padding-left: 1rem;
-    margin-left: 4rem;
+    margin-right: 7rem;
     border-radius: 0.8rem;
     border-style: hidden;
     background-color: white;
@@ -64,10 +70,9 @@ input::placeholder {
   }
   
   .header-btn-group {
-    margin-left: 16rem;
-    padding-left: 2rem;
     display: flex;
     gap: 1rem;
+    
   }
   
   .icon {
@@ -235,6 +240,7 @@ input::placeholder {
     border-style: none;
     border-radius: 1rem;
     margin-top: 1.5rem;
+    margin-left: 10vw;
     padding: 1rem;
 }
 
@@ -524,6 +530,60 @@ input::placeholder {
     justify-content: start;
 }
 
+/*Cart page styling*/
+
+.cart-title {
+    color: #FF7600;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 26pt;
+    margin-top: 3rem;
+}
+
+.cart {
+    display: flex;
+}
+
+.cart-product {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.cart-product-img-container {
+  flex-shrink: 0;
+}
+
+.cart-product-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.cart-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cart-product-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.cart-product-qty,
+.cart-product-price {
+  font-size: 0.9rem;
+  color: #444;
+}
+
 
 @media (max-width: 430px) {
     
@@ -629,8 +689,5 @@ input::placeholder {
         column-gap: 0.8rem;
         bottom: 0.5rem;
     }
-
-
-
     
-}  
+}
