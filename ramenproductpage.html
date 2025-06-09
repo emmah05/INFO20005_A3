@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=REM:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
-    <title>Shopping Cart</title>
+    <title>Ramen product page</title>
 </head>
 
 <body>
@@ -216,29 +216,36 @@
         });
       });
     });
-  </script>
-
+  </script> 
+  
   <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cartProductsContainer = document.querySelector('.cart-products');
+  const totalPriceElem = document.querySelector('.total-price');
+  const summaryElem = document.querySelector('.checkout-info h4');
 
-    //Update cart data when products are added
-    document.addEventListener('DOMContentLoaded', () => {
-    const cartProductsContainer = document.querySelector('.cart-products');
-    const totalPriceElem = document.querySelector('.total-price');
-  
-    // Store cart items by a unique product key (like product name or SKU)
-    const cart = {};
-  
-    // Helper to update cart UI & total price 
-    
-    function updateCartUI() {
-        cartProductsContainer.innerHTML = '';
-        let total = 0;
+  // 🟨 Reconstruct cart object from localStorage
+  const storedCartArray = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = {};
+  storedCartArray.forEach(item => {
+    cart[item.name] = {
+      name: item.name,
+      price: item.price,
+      quantity: item.qty,
+      image: item.image
+    };
+  });
 
-        Object.values(cart).forEach(item => {
-            const productDiv = document.createElement('div');
-            productDiv.classList.add('cart-product');
+  function updateCartUI() {
+    cartProductsContainer.innerHTML = '';
+    let total = 0;
+    const summaryParts = [];
 
-        productDiv.innerHTML = `
+    Object.values(cart).forEach(item => {
+      const productDiv = document.createElement('div');
+      productDiv.classList.add('cart-product');
+
+      productDiv.innerHTML = `
         <div class="cart-product-img-container">
             <img class="cart-product-img" src="${item.image}" alt="${item.name}">
         </div>
@@ -247,111 +254,25 @@
             <span class="cart-product-qty">Qty: ${item.quantity}</span>
             <span class="cart-product-price">$${(item.price * item.quantity).toFixed(2)}</span>
         </div>
-        `;
+      `;
 
-        cartProductsContainer.appendChild(productDiv);
-        total += item.price * item.quantity;
+      cartProductsContainer.appendChild(productDiv);
+      total += item.price * item.quantity;
+      summaryParts.push(`${item.name} x ${item.quantity}`);
     });
 
-  totalPriceElem.textContent = `$${total.toFixed(2)}`;
-
-    // Save cart to localStorage (with consistent key + field names)
-    const cartArray = Object.values(cart).map(item => ({
-        name: item.name,
-        price: item.price,
-        qty: item.quantity,
-        image: item.image
-     }));
-    localStorage.setItem('cart', JSON.stringify(cartArray));
+    // 🆕 Update <h4> in .checkout-info
+    if (summaryElem) {
+      summaryElem.textContent = summaryParts.join(', ');
     }
 
-    // Generic handler to setup add-to-cart & quantity controls for a given product container
-    function setupProductAddToCart(container, selectors) {
-      const addBtn = container.querySelector(selectors.addBtn);
-      const qtySelector = container.querySelector(selectors.qtySelector);
-      const minusBtn = qtySelector.querySelector(selectors.minusBtn);
-      const plusBtn = qtySelector.querySelector(selectors.plusBtn);
-      const qtyDisplay = qtySelector.querySelector(selectors.qtyDisplay);
-      const productNameElem = container.querySelector(selectors.productName);
-      const productPriceElem = container.querySelector(selectors.productPrice);
-      const relativeImagePath = container.querySelector(selectors.productImage)?.getAttribute('src') || '';
-      const productImage = new URL(relativeImagePath, window.location.origin).href;
+    totalPriceElem.textContent = `$${total.toFixed(2)}`;
+  }
 
-  
-      let quantity = 1;
-  
-      // Get product details
-      const productName = productNameElem ? productNameElem.textContent.trim() : 'Unknown Product';
-      // Remove $ and convert to float
-      const productPrice = productPriceElem ? parseFloat(productPriceElem.textContent.replace(/[^0-9.-]+/g,"")) : 0;
-  
-      addBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        quantity = 1;
-        qtyDisplay.textContent = quantity;
-        addBtn.style.display = 'none';
-        qtySelector.style.display = 'flex';
-  
-        // Add or update cart
-        cart[productName] = { name: productName, price: productPrice, quantity, image: productImage};
-        updateCartUI();
-      });
-  
-      minusBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (quantity > 1) {
-          quantity--;
-          qtyDisplay.textContent = quantity;
-          cart[productName].quantity = quantity;
-        } else {
-          // Remove from cart & switch back UI
-          quantity = 0;
-          qtySelector.style.display = 'none';
-          addBtn.style.display = 'inline-block';
-          delete cart[productName];
-        }
-        updateCartUI();
-      });
-  
-      plusBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        quantity++;
-        qtyDisplay.textContent = quantity;
-        cart[productName].quantity = quantity;
-        updateCartUI();
-      });
-    }
-  
-    // Setup normal product cards
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-      setupProductAddToCart(card, {
-        addBtn: '.addtocart-btn',
-        qtySelector: '.quantity-selector',
-        minusBtn: '.qty-btn.minus',
-        plusBtn: '.qty-btn.plus',
-        qtyDisplay: '.qty-number',
-        productName: '.product-name',
-        productPrice: '.price'
-      });
-    });
-    const enlargedProductInfo = document.querySelector('.product-info');
-    if (enlargedProductInfo) {
-      setupProductAddToCart(enlargedProductInfo, {
-        addBtn: '.enlarged-addtocart-btn',
-        qtySelector: '.enlarged-qty-selector',
-        minusBtn: '.enlarged-qty-btn.minus',
-        plusBtn: '.enlarged-qty-btn.plus',
-        qtyDisplay: '.enlarged-qty-number',
-        productName: 'h1',  // product's name is inside h1 in product-info
-        productPrice: '.product-pg-price' // price element for product
-      });
-    }
-  
-  });
-  
-    
-  </script>
+  updateCartUI();
+});
+</script>
+
   
   
   

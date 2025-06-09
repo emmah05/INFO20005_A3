@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    padding: 0px;
+    padding-bottom: 5rem;
     background-color: #EDEDED;
 }
 
@@ -15,7 +15,6 @@ header {
     padding: 0 1rem; /* optional side padding */
     width: 100%;
     box-sizing: border-box;
-    
 }
 
 .logo {
@@ -38,7 +37,7 @@ header {
     box-shadow: 0.2rem 0.3rem 0.2rem rgba(0, 0, 0, 0.3);
 }
 
-input {
+.search-bar input {
     width: 90%;
     padding-right: 2rem;
     border: none;
@@ -51,7 +50,7 @@ input:focus {
     border: none;
 }
 
-input::placeholder {
+.searchbar input::placeholder {
     font-size: 12pt;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -530,9 +529,11 @@ input::placeholder {
     justify-content: start;
 }
 
+
 /*Cart page styling*/
 
-.cart-title {
+.cart-title, 
+.checkout-title {
     color: #FF7600;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
@@ -543,49 +544,217 @@ input::placeholder {
 
 .cart {
     display: flex;
+    column-gap: 2vw;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.cart-products {
+    max-width: 100%;
 }
 
 .cart-product {
+  width: 40vw;
+  min-width: 30rem;
   display: flex;
-  align-items: center;
-  gap: 1rem;
   margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 0.6rem;
-  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background-color: white;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
 }
 
 .cart-product-img-container {
   flex-shrink: 0;
-}
-
-.cart-product-img {
-  width: 70px;
-  height: 70px;
+  width: 10rem;
+  min-width: 8rem;
+  height: 10rem;
   object-fit: contain;
-  border-radius: 0.5rem;
+  border: solid #FF7600;
+  border-radius: 1rem;
 }
 
 .cart-product-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    position: relative; 
+    padding-left: 1.5rem;
+  }
 
 .cart-product-name {
-  font-weight: bold;
-  font-size: 1rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 19pt;
+    font-weight: 500;
+    color: #545454;
+    top: 4rem;
 }
 
-.cart-product-qty,
 .cart-product-price {
-  font-size: 0.9rem;
-  color: #444;
+    text-align: right;
+    font-family: 'REM', sans-serif;
+    font-size: 20pt;
+    font-weight: 600;
+    color: #FF7600;
+  }
+  
+
+.checkout-info {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    background-color: white;
+    width: 20vw;
+    min-width: 13rem;
 }
 
+.checkout-info h2 {
+    text-align: right;
+    font-family: 'REM', sans-serif;
+    font-size: 30pt;
+    font-weight: 600;
+    color: #FF7600;
+}
+
+.checkout-info h3 {
+    text-align: right;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #545454;
+    margin-bottom: -1rem;
+}
+
+.checkout-info h4 {
+    line-height: 1.8;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13pt;
+    font-weight: 500;
+    color: #545454;
+}
+
+.checkout-divider {
+    border: none;
+    border-top: 2px solid #C4C4C4;
+    margin: 1rem 0;
+}
+
+.go-to-checkout-btn {
+    display: inline-block;
+    text-align: center;
+    width: 100%; 
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: #252525;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 18pt;
+    border-style: none;
+    border-radius: 1rem;
+    text-decoration: none;   /* no underline */
+    cursor: pointer;
+}
+
+.cart-qty-selector {
+    display: flex;
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+    height: 3rem;
+}
+
+.cart-qty-selector button {
+    width: 32%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30pt;
+    color: white;
+    background-color: #FF7600;
+    border: none;
+    padding-left: 0.5rem;
+}
+
+.cart-qty-number {
+    padding-top: 0.3rem;
+    width: 36%;
+    font-family: 'REM', sans-serif;
+    font-size: 18pt;
+    text-align: center;
+    border-color: #FF7600;
+    border-width: 0.25rem;
+    border-style: solid;
+}
+
+
+/*Checkout page styling*/
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-fields h2 {
+    font-family: 'Ubuntu', sans-serif;
+    color: #545454;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.address-details,
+.payment-details {
+    margin-top: 4rem;
+}
+
+label {
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15pt;
+    margin-bottom: 0.7rem;
+    margin-top: 1rem;
+    color: #333;
+  }
+
+  
+  .input-fields input {
+    border: solid #FF7600 1px;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14pt;
+    width: 40vw;
+  }
+
+  input::placeholder {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14pt;
+  }
+
+.checkout-btn {
+    display: inline-block;
+    text-align: center;
+    width: 42.5vw; 
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 3rem;
+    background-color: #252525;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 18pt;
+    border-style: none;
+    border-radius: 1rem;
+    text-decoration: none;   /* no underline */
+    cursor: pointer;
+}
 
 @media (max-width: 430px) {
+
+    body {
+        padding-bottom: 15rem;
+    }
     
     .product {
       flex-direction: column;      /* Stack items vertically */
@@ -688,6 +857,62 @@ input::placeholder {
         padding: 0.4rem 0.6rem 0.4rem 0.6rem;
         column-gap: 0.8rem;
         bottom: 0.5rem;
+    }
+
+    .search-bar {
+        display: none;
+    }
+
+    .filter-btn {
+        margin: 0rem 1rem;
+    }
+
+    .cart {
+        flex-direction: column;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .cart-product-img-container {
+        width: 5rem;
+        height: 8rem;
+    }
+
+    .cart-product {
+        margin: unset;
+        margin: 0.5rem auto;
+        min-width: unset;
+        width: 92%;
+        padding: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cart-product-details {
+        padding: unset;
+        max-width: 50vw;
+        padding-left: 0.7rem;
+    }
+
+    .cart-product-price {
+        font-size: 15pt;
+    }
+
+    .cart-product-name {
+        font-size: 16pt;
+    }
+
+    .cart-qty-selector {
+        align-items: center;
+        width: 100%;
+        height: 2.5rem;
+        margin: unset;
+        border-radius: 0.8rem;
+    }
+
+    .checkout-info {
+        width: 80vw;
+        min-width: unset;
+        margin-top: -2rem;
     }
     
 }
