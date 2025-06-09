@@ -89,6 +89,7 @@ input:focus {
     background-color: #FF7600;
   }
   
+/*image slider (promotional banners) styling*/
 
 .slider-container {
     padding: 3rem;
@@ -178,7 +179,7 @@ input:focus {
 }
 
 .cat-buttons::-webkit-scrollbar {
-    display: none;
+    display: none; /*hides scrollbar*/
   }
 
 .cat-buttons button {
@@ -687,6 +688,16 @@ input:focus {
     border-style: solid;
 }
 
+.empty-cart-line {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 15pt;
+    width: 40vw;
+    background-color: white;
+    border-radius: 2rem;
+    padding: 3rem;
+    margin-top: -0.1rem;
+}
 
 /*Checkout page styling*/
 
@@ -698,6 +709,7 @@ input:focus {
 
 .input-fields h2 {
     font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
     color: #545454;
     margin-bottom: 2rem;
     text-align: center;
@@ -749,6 +761,59 @@ label {
     text-decoration: none;   /* no underline */
     cursor: pointer;
 }
+
+.payment-receipt {
+    background-color: white;
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    margin: 0 auto;
+    margin-top: 5rem;
+    border-style: none;
+    border-radius: 2rem;
+}
+
+.payment-receipt h2 {
+    color: #FF7600;
+    font-size: 20pt;
+}
+
+.payment-receipt h3 {
+    font-size: 15pt;
+}
+
+.payment-receipt h4 {
+    font-size: 14pt;
+    text-align: center;
+}
+
+#check-icon {
+    margin-top: 2rem;
+    width: 5rem;
+}
+
+.back-to-home-btn {
+    display: inline-block;
+    text-align: center;
+    width: 90%; 
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #252525;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 18pt;
+    border-style: none;
+    border-radius: 1rem;
+    text-decoration: none;   /* no underline */
+    cursor: pointer;
+}
+
+/*adjustments for mobile*/
 
 @media (max-width: 430px) {
 
@@ -915,4 +980,15 @@ label {
         margin-top: -2rem;
     }
     
+    .input-fields input {
+        width: 70vw;
+        border-radius: 0.8rem;
+    }
+
+    .empty-cart-line {
+        width: 80vw;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+    }
+
 }

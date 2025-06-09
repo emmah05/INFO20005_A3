@@ -80,6 +80,7 @@
     </script>
     
     <script>
+        //Load data for cart products
         document.addEventListener('DOMContentLoaded', () => {
           const cartProductsContainer = document.querySelector('.cart-products');
           const totalPriceElem = document.querySelector('.total-price');
@@ -88,7 +89,7 @@
           const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
         
           if (storedCart.length === 0) {
-            cartProductsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            cartProductsContainer.innerHTML = '<p class = "empty-cart-line">Your cart is empty.</p>';
             totalPriceElem.textContent = '$0.00';
             if (summaryElem) summaryElem.textContent = '';
             return;

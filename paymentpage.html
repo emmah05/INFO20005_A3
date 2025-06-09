@@ -8,48 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=REM:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
-    <title>Checkout page</title>
+    <title>Payment page</title>
 </head>
 
 <body>
     <div id="header-container"></div>
 
-    <h1 class = "checkout-title">Checkout</h1>
+    <section class="payment-receipt">
+        <img id = "check-icon" src="greencheck.png" alt="green check">
+        <h2>Payment Successful!</h2>
 
-    <section class="input-fields">
-        <div class="personal-details"> 
-            <h2>Your details</h2>
-            <label for="first-name">Your name</label>
-            <input type="text" id="first-name" placeholder="Your name">
-            <label for="last-name">Last name</label>
-            <input type="text" id="last-name" placeholder="Last name">
-            <label for="email">Email</label>
-            <input type="text" id="email-address" placeholder="Email">
-        </div>
-        <div class="address-details"> 
-            <h2>Delivery address</h2>
-            <label for="street">Street</label>
-            <input type="text" id="street" placeholder="Street">
-            <label for="city">City</label>
-            <input type="text" id="city" placeholder="City">
-            <label for="country">Country</label>
-            <input type="text" id="country" placeholder="Country">
-            <label for="zipcode">Zipcode</label>
-            <input type="text" id="zipcode" placeholder="Zipcode">
-        </div>
-        <div class="payment-details"> 
-            <h2>Payment details</h2>
-            <label for="card-num">Card number</label>
-            <input type="text" id="card-num" placeholder="Card number">
-            <label for="month">Month</label>
-            <input type="text" id="month" placeholder="Month">
-            <label for="year">Year</label>
-            <input type="text" id="year" placeholder="Year">
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" placeholder="CVV">
-        </div>
-        <a href="paymentpage.html" class="checkout-btn">Checkout</a>
+        <h4>Your order number is 245790356</h4>
+        <h4>Date of Payment: XX/XX/XX</h4>
+        <h4>The receipt has been sent to your email: <br><br> address.gmail.com</h4>
+        <h3>Thank you for your purchase!</h3>
+
+        <a class = "back-to-home-btn" href = "index.html">Back to Home</a>
+
     </section>
+
     <!--Load header.html and swap button icons upon hover-->
     
     <script>
