@@ -25,6 +25,7 @@ header {
 }
 
 .search-bar {
+    position: relative;
     width: 50rem;
     min-width: 28rem;
     height: 3rem;
@@ -53,6 +54,14 @@ input:focus {
 .searchbar input::placeholder {
     font-size: 12pt;
     font-family: 'Ubuntu', sans-serif;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4rem;
 }
 
 .header-btn {
@@ -242,6 +251,14 @@ input:focus {
     margin-top: 1.5rem;
     margin-left: 10vw;
     padding: 1rem;
+}
+
+.results-statement {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 23pt;
+    margin-left: 10vw;
+    margin-bottom: 0rem;
+    color: #6b6b6b;
 }
 
 .product-cards {
@@ -929,7 +946,15 @@ label {
     }
 
     .filter-btn {
-        margin: 0rem 1rem;
+        margin: 0rem 1.5rem;
+    }
+
+    .results-statement {
+        font-size: 20pt;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
 
     .cart {

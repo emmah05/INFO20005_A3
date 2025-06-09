@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HappyMart.css">
+    <link rel="stylesheet" href="HappyMart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=REM:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <title>Ramen search page</title>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <section class = "categories">
+        <h2>Categories</h2>
+        <div class = "cat-buttons">
+            <button id = "veges">
+                <img src="vegeicon.png" alt="veges">
+                <h3>Veges</h3>
+            </button>
+            <button id = "seafood">
+                <img src="seafoodicon.png" alt="seafood">
+                <h3>Seafood</h3>
+            </button>
+            <button onclick="window.location.href='Pantrypage.html';" id = "pantry">
+                <img src="cannedfoodicon.png" alt="pantry">
+                <h3>Pantry</h3>
+            </button>
+            <button id = "drinks">
+                <img src="drinksicon.png" alt="drinks">
+                <h3>Drinks</h3>
+            </button>
+            <button id = "veges">
+                <img src="vegeicon.png" alt="veges">
+                <h3>Veges</h3>
+            </button>
+            <button id = "seafood">
+                <img src="seafoodicon.png" alt="seafood">
+                <h3>Seafood</h3>
+            </button>
+            <button onclick="window.location.href='Pantrypage.html';" id = "pantry">
+                <img src="cannedfoodicon.png" alt="pantry">
+                <h3>Pantry</h3>
+            </button>
+            <button id = "drinks">
+                <img src="drinksicon.png" alt="drinks">
+                <h3>Drinks</h3>
+            </button>
+        </div>
+    </section>
+
+    <div class = "product-section">
+      <h2 class="results-statement">Showing results for "Ramen"</h2>
+
+      <button class ="filter-btn">Filters &#x25BE;</button>
+
+      <div class= "product-cards">
+        <div class = "product-card">
+            <a href="ramenproductpage.html">
+                <img class = "product-image" src="ramenphoto.png" alt="ramen photo">
+                <h3 class = "product-name">Samyang Ramen 5p</h3>
+            </a>
+            <h2 class = "price">$7.99</h2>
+            <div class="product-actions">
+                <button class="addtocart-btn">Add to Cart</button>
+            
+                <!-- Quantity selector (hidden by default) -->
+                <div class="quantity-selector" style="display: none;">
+                  <button class="qty-btn minus">-</button>
+                  <span class="qty-number">1</span>
+                  <button class="qty-btn plus">+</button>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Load header.html and swap button icons upon hover-->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        fetch('header.html')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to load header: ' + response.status);
+            }
+            return response.text();
+          })
+          .then(html => {
+            document.getElementById('header-container').innerHTML = html;
+            
+            // Now the header is in DOM, initialize button hover swapping here:
+            initHeaderButtonHover();
+          })
+          .catch(error => {
+            console.error('Error loading header:', error);
+          });
+      });
+      
+      // Hover swap logic put inside a function:
+      function initHeaderButtonHover() {
+        const buttons = document.querySelectorAll('.header-btn');
+      
+        buttons.forEach(btn => {
+          const img = btn.querySelector('img');
+          const defaultSrc = img.getAttribute('src');
+          let hoverSrc = defaultSrc;
+      
+          if (defaultSrc.includes('loginicon.png')) {
+            hoverSrc = defaultSrc.replace('loginicon.png', 'whiteloginicon.png');
+          } else if (defaultSrc.includes('homeicon.png')) {
+            hoverSrc = defaultSrc.replace('carticon.png', 'whitecarticon.png');
+          }
+      
+          btn.addEventListener('mouseenter', () => {
+            img.setAttribute('src', hoverSrc);
+          });
+      
+          btn.addEventListener('mouseleave', () => {
+            img.setAttribute('src', defaultSrc);
+          });
+        });
+      }    
+    </script>
+
+    <!--Swap Add to Cart button with quantity selector when clicked-->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const productCards = document.querySelectorAll('.product-card');
+    
+        productCards.forEach(card => {
+          const addToCartBtn = card.querySelector('.addtocart-btn');
+          const qtySelector = card.querySelector('.quantity-selector');
+          const minusBtn = card.querySelector('.qty-btn.minus');
+          const plusBtn = card.querySelector('.qty-btn.plus');
+          const qtyDisplay = card.querySelector('.qty-number');
+    
+          let quantity = 1;
+    
+          addToCartBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // prevent link from triggering
+            addToCartBtn.style.display = 'none';
+            qtySelector.style.display = 'flex';
+            quantity = 1;
+            qtyDisplay.textContent = quantity;
+          });
+    
+          minusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (quantity > 1) {
+              quantity--;
+              qtyDisplay.textContent = quantity;
+            } else {
+              // If reaching 0, switch back to "Add to Cart" button
+              qtySelector.style.display = 'none';
+              addToCartBtn.style.display = 'inline-block';
+            }
+          });
+    
+          plusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            quantity++;
+            qtyDisplay.textContent = quantity;
+          });
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+      const productCards = document.querySelectorAll('.product-card');
+    
+      productCards.forEach(card => {
+        const addToCartBtn = card.querySelector('.addtocart-btn');
+        const qtySelector = card.querySelector('.quantity-selector');
+        const minusBtn = card.querySelector('.qty-btn.minus');
+        const plusBtn = card.querySelector('.qty-btn.plus');
+        const qtyDisplay = card.querySelector('.qty-number');
+    
+        const productName = card.querySelector('.product-name')?.textContent || "Unnamed Product";
+        const productPrice = parseFloat(card.querySelector('.price')?.textContent.replace('$', '') || 0);
+        const productImage = card.querySelector('.product-image')?.getAttribute('src') || '';
+    
+        let quantity = 1;
+    
+        // Load existing quantity if in cart
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.name === productName);
+        if (existingItem) {
+          quantity = existingItem.qty;
+          addToCartBtn.style.display = 'none';
+          qtySelector.style.display = 'flex';
+          qtyDisplay.textContent = quantity;
+        }
+    
+        function updateCart(name, price, qty, image) {
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const index = cart.findIndex(item => item.name === name);
+          if (index !== -1) {
+            cart[index].qty = qty;
+          } else {
+            cart.push({ name, price, qty, image });
+          }
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    
+        function removeFromCart(name) {
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          cart = cart.filter(item => item.name !== name);
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    
+        addToCartBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          quantity = 1;
+          qtyDisplay.textContent = quantity;
+          addToCartBtn.style.display = 'none';
+          qtySelector.style.display = 'flex';
+          updateCart(productName, productPrice, quantity, productImage);
+        });
+    
+        minusBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (quantity > 1) {
+            quantity--;
+            qtyDisplay.textContent = quantity;
+            updateCart(productName, productPrice, quantity, productImage);
+          } else {
+            qtySelector.style.display = 'none';
+            addToCartBtn.style.display = 'inline-block';
+            removeFromCart(productName);
+          }
+        });
+    
+        plusBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          quantity++;
+          qtyDisplay.textContent = quantity;
+          updateCart(productName, productPrice, quantity, productImage);
+        });
+      });
+    });
+    </script>
+    
+
+</body>
+</html>
